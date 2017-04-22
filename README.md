@@ -1,5 +1,16 @@
-# Codeigniter-Docker
+# EduFocal's Docker Configuration
 
-Like [Laravel Homestead](https://laravel.com/docs/master/homestead) but for [Docker](https://www.docker.com/).
+Get our stack going quickly with these configs.
 
-[![Build Status](https://travis-ci.org/appleboy/codeigniter-docker.svg?branch=master)](https://travis-ci.org/appleboy/codeigniter-docker)
+Clone this repo inside your edufocal repo to get started.
+
+Run the following the build the containers
+```
+make build
+```
+
+Then fire them up with
+```
+make up
+```
+

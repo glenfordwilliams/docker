@@ -1,12 +1,14 @@
 FROM php:7.0-fpm
 
-MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
+# MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
+MAINTAINER Paul Allen <paul@edufocal.com>
 
 ADD ./codeigniter.ini /usr/local/etc/php/conf.d
 ADD ./vh-codeigniter.pool.conf /usr/local/etc/php-fpm.d/
 
 RUN apt-get update && apt-get install -y \
   libpq-dev \
+  libcurl3-dev \
   libmemcached-dev \
   curl \
   mysql-client \
@@ -31,9 +33,10 @@ RUN docker-php-ext-install \
   pdo_mysql \
   pdo_pgsql \
   mysqli \
+  curl \
   gd \
   mcrypt
-
+  
 # Install xdebug
 RUN pecl install xdebug && \
   docker-php-ext-enable xdebug

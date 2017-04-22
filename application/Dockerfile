@@ -1,7 +1,7 @@
 FROM debian:jessie
 
-MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
+MAINTAINER Paul Allen <paul@edufocal.com>
 
-WORKDIR /var/www/codeigniter
+WORKDIR /var/www/edufocal
 
 CMD ["true"]

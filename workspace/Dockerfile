@@ -20,13 +20,12 @@ RUN add-apt-repository -y \
   ppa:ondrej/php
 
 # Install PHP-CLI 7, some PHP extentions and some useful Tools with APT
-RUN apt-get update && apt-get install -y --force-yes \
+RUN apt-get update && apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
   php7.0-cli \
   php7.0-common \
-  php7.0-curl \
   php7.0-json \
-  php7.0-xml \
-  php7.0-mbstring \
+  php7.0-curl \
+  php-mbstring \
   php7.0-mcrypt \
   php7.0-mysql \
   php7.0-pgsql \
@@ -36,6 +35,9 @@ RUN apt-get update && apt-get install -y --force-yes \
   php7.0-memcached \
   php7.0-gd \
   php7.0-xdebug \
+  php-zip \
+  php-xml \
+  php-curl \
   php-dev \
   libcurl4-openssl-dev \
   libedit-dev \
@@ -46,6 +48,7 @@ RUN apt-get update && apt-get install -y --force-yes \
   libsqlite3-dev \
   git \
   curl \
+  unzip \
   vim \
   nano
 
@@ -66,8 +69,8 @@ RUN curl -s http://getcomposer.org/installer | php \
 RUN echo "alias phpunit='php -dzend_extension=xdebug.so /var/www/codeigniter/vendor/bin/phpunit'" >> ~/.bashrc
 
 # Install mongodb extension
-RUN pecl install mongodb
-RUN echo "extension=mongodb.so" >> /etc/php/7.0/cli/php.ini
+#RUN pecl install mongodb
+#RUN echo "extension=mongodb.so" >> /etc/php/7.0/cli/php.ini
 
 ENV NVM_DIR=/root/.nvm
 

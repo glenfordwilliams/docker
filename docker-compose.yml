@@ -16,13 +16,12 @@ services:
   application:
     build: ./application
     volumes:
-      - ../:/var/www/codeigniter
+      - ../:/var/www/edufocal
 
   data:
     build: ./data
     volumes:
       - /var/lib/mysql
-      - /var/lib/mariadb
       - /data
 
   nginx:
@@ -44,22 +43,10 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: ci
-      MYSQL_USER: ci
-      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: edufocal_prod
+      MYSQL_USER: efuser 
+      MYSQL_PASSWORD: 12desciples
       MYSQL_ROOT_PASSWORD: root
-
-  # mariadb:
-  #   build: ./mariadb
-  #   volumes_from:
-  #     - data
-  #   ports:
-  #     - "3306:3306"
-  #   environment:
-  #     MYSQL_DATABASE: ci
-  #     MYSQL_USER: ci
-  #     MYSQL_PASSWORD: secret
-  #     MYSQL_ROOT_PASSWORD: root
 
   redis:
     build: ./redis
