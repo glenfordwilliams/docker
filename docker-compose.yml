@@ -18,6 +18,11 @@ services:
     volumes:
       - ../:/var/www/edufocal
 
+  api:
+    build: ./api
+    volumes:
+      - ../../api:/var/www/api
+
   data:
     build: ./data
     volumes:
@@ -28,6 +33,7 @@ services:
     build: ./nginx
     volumes_from:
       - application
+      - api
     volumes:
       - ./logs/nginx/:/var/log/nginx
     ports:
@@ -59,4 +65,5 @@ services:
     build: ./workspace
     volumes_from:
       - application
+      - api
     tty: true
