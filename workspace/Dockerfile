@@ -1,6 +1,6 @@
 FROM phusion/baseimage:latest
 
-MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
+MAINTAINER Paul Allen <paul@paulallen.org>
 
 RUN DEBIAN_FRONTEND=noninteractive
 RUN locale-gen en_US.UTF-8
@@ -59,7 +59,7 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh
 RUN sed -i 's/^/;/g' /etc/php/7.0/cli/conf.d/20-xdebug.ini
 
 # Add bin folder of composer to PATH.
-RUN echo "export PATH=${PATH}:/var/www/codeigniter/vendor/bin" >> ~/.bashrc
+RUN echo "export PATH=${PATH}:/var/www/edufocal/vendor/bin:/var/www/api/vendor/bin" >> ~/.bashrc
 
 # Install Composer
 RUN curl -s http://getcomposer.org/installer | php \

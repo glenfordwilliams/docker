@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile-70
     volumes_from:
       - application
+      - api
     expose:
       - "9000"
     links:
@@ -16,17 +17,17 @@ services:
   application:
     build: ./application
     volumes:
-      - ../:/var/www/edufocal
+      - ../webapp:/var/www/edufocal
 
   api:
     build: ./api
     volumes:
-      - ../../api:/var/www/api
+      - ../api:/var/www/api
 
   data:
     build: ./data
     volumes:
-      - /var/lib/mysql
+      - /var/docker/edufocal/mysql:/var/lib/mysql
       - /data
 
   nginx:
