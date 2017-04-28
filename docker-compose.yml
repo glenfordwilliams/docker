@@ -24,6 +24,11 @@ services:
     volumes:
       - ../api:/var/www/api
 
+  messages:
+    build: ./messages
+    volumes:
+      - ../messages:/var/www/messages
+
   data:
     build: ./data
     volumes:
@@ -67,4 +72,5 @@ services:
     volumes_from:
       - application
       - api
+      - messages
     tty: true
