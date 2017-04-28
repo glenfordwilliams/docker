@@ -84,6 +84,8 @@ RUN . ~/.nvm/nvm.sh && \
 # Source the bash
 RUN . ~/.bashrc
 
+ADD basic.vim /root/.vimrc
+
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
