@@ -28,6 +28,8 @@ services:
     build: ./messages
     volumes:
       - ../messages:/var/www/messages
+    expose:
+      - "3000"
 
   data:
     build: ./data
@@ -47,6 +49,7 @@ services:
       - "443:443"
     links:
       - php
+      - messages
 
   mysql:
     build: ./mysql
