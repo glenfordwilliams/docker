@@ -84,7 +84,10 @@ RUN . ~/.nvm/nvm.sh && \
 # Source the bash
 RUN . ~/.bashrc
 
-ADD basic.vim /root/.vimrc
+# Setup vim plugins and configs
+RUN git clone https://github.com/amix/vimrc.git /root/.vim_runtime
+RUN bash /root/.vim_runtime/install_awesome_vimrc.sh
+ADD my_configs.vim /root/.vim_runtime/
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
