@@ -10,3 +10,6 @@ ps:
 	docker-compose -p ci ps
 down:
 	docker-compose -p ci down
+
+screen:
+	screen -c ./workspace/screenrc
