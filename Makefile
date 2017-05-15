@@ -9,7 +9,7 @@ stop:
 ps:
 	docker-compose -p ci ps
 down:
-	docker-compose -p ci down
+	docker-compose -p ci down --remove-orphans
 
 screen:
 	screen -c ./workspace/screenrc
