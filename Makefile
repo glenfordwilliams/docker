@@ -12,7 +12,7 @@ down:
 	docker-compose -p ci down --remove-orphans
 screen:
 	screen -c ./workspace/screenrc
-rmc:
-	docker rm $(docker ps -a -q)
-rmi:
-	docker rm $(docker images -q)
+cleanc:
+	docker rm $(docker ps -a | awk '$2 ~ /ci_/ { print $1 }')
+cleani:
+	ddocker ps | awk '$2 ~ /ci_/ { print $1 }'
