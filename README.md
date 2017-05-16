@@ -2,19 +2,14 @@
 
 Setup your development environment quickly using this stack.
 
-Clone this repo inside your edufocal repo to get started.
-
-Run the following to build the containers
+First our setup script below and follow the prompt for your github username and password:
 ```
-make build
+wget -O - https://raw.githubusercontent.com/EduFocal/misc/master/clonedocker.sh | bash
 ```
 
-Then fire them up with
-```
-make up
-```
+This will install all the containers and build them.
 
-Optionally you can use the workspace which is setup for a vim workflow with tmux (coming soon).
+There is also an optional screen / vim workspace you can start using right away with:
 ```
-docker exec -it ci_workspace_1 bash
+make screen
 ```
