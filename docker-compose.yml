@@ -28,8 +28,10 @@ services:
     build: ./messages
     volumes:
       - ../messages:/var/www/messages
+      - ../messages/node_modules:/var/www/messages/node_modules
     expose:
       - "3000"
+    tty: true
 
   data:
     build: ./data

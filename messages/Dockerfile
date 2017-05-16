@@ -8,6 +8,6 @@ EXPOSE 3000
 
 WORKDIR /var/www/messages
 
-RUN npm install
+ADD start.sh /root/
 
-CMD npm run start
+CMD /root/start.sh
