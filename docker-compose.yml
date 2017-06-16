@@ -13,6 +13,7 @@ services:
       - "9000"
     links:
       - mysql
+      - workspace
 
   application:
     build: ./application
@@ -29,8 +30,6 @@ services:
     volumes:
       - ../messages:/var/www/messages
       - ../messages/node_modules:/var/www/messages/node_modules
-    expose:
-      - "3000"
     tty: true
 
   data:
@@ -52,6 +51,7 @@ services:
     links:
       - php
       - messages
+      - workspace
 
   mysql:
     build: ./mysql
@@ -78,4 +78,7 @@ services:
       - application
       - api
       - messages
+    expose:
+      - "3000"
+      - "8000"
     tty: true

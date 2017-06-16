@@ -8,6 +8,4 @@ EXPOSE 3000
 
 WORKDIR /var/www/messages
 
-ADD start.sh /root/
-
-CMD /root/start.sh
+CMD true
