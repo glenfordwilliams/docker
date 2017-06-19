@@ -16,3 +16,6 @@ cleanc:
 	docker rm $(docker ps -a | awk '$2 ~ /ci_/ { print $1 }')
 cleani:
 	ddocker ps | awk '$2 ~ /ci_/ { print $1 }'
+
+connect:
+	docker exec -it ci_workspace_1 bash

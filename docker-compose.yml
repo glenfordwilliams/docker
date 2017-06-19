@@ -31,6 +31,8 @@ services:
       - ../messages:/var/www/messages
       - ../messages/node_modules:/var/www/messages/node_modules
     tty: true
+    expose:
+      - "3000"
 
   data:
     build: ./data
@@ -52,6 +54,10 @@ services:
       - php
       - messages
       - workspace
+    networks:
+      default:
+        aliases:
+          - apione
 
   mysql:
     build: ./mysql
@@ -79,6 +85,5 @@ services:
       - api
       - messages
     expose:
-      - "3000"
       - "8000"
     tty: true
