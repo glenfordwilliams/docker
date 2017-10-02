@@ -7,52 +7,31 @@ services:
       context: ./php
       dockerfile: Dockerfile-70
     volumes_from:
-      - application
-      - api
+      - apps
     expose:
       - "9000"
+      - "80"
     links:
       - mysql
+      - redis
       - workspace
 
-  application:
+  apps:
     build: ./application
     volumes:
-      - ../webapp:/var/www/edufocal
-
-  api:
-    build: ./api
-    volumes:
-      - ../api:/var/www/api
-
-  messages:
-    build: ./messages
-    volumes:
-      - ../messages:/var/www/messages
-      - ../messages/node_modules:/var/www/messages/node_modules
-    tty: true
-    expose:
-      - "3000"
-
-  data:
-    build: ./data
-    volumes:
-      - /var/docker/edufocal/mysql:/var/lib/mysql
-      - /data
+      - ../:/var/www/edufocal
 
   nginx:
     build: ./nginx
     volumes_from:
-      - application
-      - api
+      - apps
     volumes:
-      - ./logs/nginx/:/var/log/nginx
+      - ./logs/:/var/log/nginx
     ports:
       - "80:80"
       - "443:443"
     links:
       - php
-      - messages
       - workspace
     networks:
       default:
@@ -61,29 +40,32 @@ services:
 
   mysql:
     build: ./mysql
-    volumes_from:
-      - data
+    volumes:
+      - DATA_FOLDER/mysql:/var/lib/mysql
     ports:
       - "3306:3306"
     environment:
       MYSQL_DATABASE: edufocal_prod
       MYSQL_USER: efuser 
-      MYSQL_PASSWORD: 12desciples
+      MYSQL_PASSWORD: fAs4345FlewsA
       MYSQL_ROOT_PASSWORD: root
 
   redis:
     build: ./redis
-    volumes_from:
-      - data
     ports:
       - "6378:6379"
 
   workspace:
-    build: ./workspace
+    build:
+      context: ./workspace
+      dockerfile: Dockerfile
+      args:
+        - USERNAME=ef
     volumes_from:
-      - application
-      - api
-      - messages
+      - apps
     expose:
       - "8000"
     tty: true
+    links:
+      - mysql
+      - redis

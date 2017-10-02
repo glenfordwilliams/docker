@@ -2,9 +2,9 @@ server {
 
   listen 80;
 
-  server_name api.edufocal.dev ef-api.paulallen.org apione;
+  server_name api.SITE_URL ef-api.SITE_URL apione;
 
-  root /var/www/api/public;
+  root /var/www/edufocal/api/public;
 
   index index.php index.html index.htm;
 
