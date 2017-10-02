@@ -1,21 +1,21 @@
 .PHONY: build up down
 
 build:
-	docker-compose -p ci build
+	docker-compose -p ef build
 up:
-	docker-compose -p ci up -d
+	docker-compose -p ef up -d
 stop:
-	docker-compose -p ci stop
+	docker-compose -p ef stop
 ps:
-	docker-compose -p ci ps
+	docker-compose -p ef ps
 down:
-	docker-compose -p ci down --remove-orphans
+	docker-compose -p ef down --remove-orphans
 screen:
 	screen -c ./workspace/screenrc
 cleanc:
-	docker rm $(docker ps -a | awk '$2 ~ /ci_/ { print $1 }')
+	docker rm $(docker ps -a | awk '$2 ~ /ef_/ { print $1 }')
 cleani:
-	docker ps | awk '$2 ~ /ci_/ { print $1 }'
+	docker ps | awk '$2 ~ /ef_/ { print $1 }'
 
 connect:
-	docker exec -it ci_workspace_1 bash
+	docker exec -it ef_workspace_1 bash
