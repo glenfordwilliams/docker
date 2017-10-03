@@ -5,7 +5,7 @@ services:
   php:
     build:
       context: ./php
-      dockerfile: Dockerfile-70
+      dockerfile: Dockerfile-56
     volumes_from:
       - apps
     expose:

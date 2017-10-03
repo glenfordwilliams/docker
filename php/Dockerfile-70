@@ -1,10 +1,9 @@
 FROM php:7.0-fpm
 
-# MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 MAINTAINER Paul Allen <paul@edufocal.com>
 
-ADD ./codeigniter.ini /usr/local/etc/php/conf.d
-ADD ./vh-codeigniter.pool.conf /usr/local/etc/php-fpm.d/
+ADD ./edufocal.ini /usr/local/etc/php/conf.d
+ADD ./vh-edufocal.pool.conf /usr/local/etc/php-fpm.d/
 
 RUN apt-get update && apt-get install -y \
   libpq-dev \
@@ -43,7 +42,7 @@ RUN pecl install xdebug && \
 
 RUN usermod -u 1000 www-data
 
-WORKDIR /var/www/codeigniter
+WORKDIR /var/www/edufocal
 
 CMD ["php-fpm"]
 
