@@ -59,7 +59,7 @@ FILE_OWNER=$(ls -ld $INSTALL_DIR | awk '{print $3}')
 
 cd $INSTALL_DIR
 
-function confirm()
+confirm()
 {
     echo -n "$@ "
     read -e answer
