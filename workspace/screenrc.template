@@ -17,8 +17,8 @@ defbce on
 mousetrack on
 
 # default windows
-screen -t Editor  1 docker exec -it ci_workspace_1 bash
-screen -t Shell1  2 docker exec -it ci_workspace_1 bash
+screen -t Editor  1 docker exec -it --user WORKSPACE_USER ci_workspace_1 bash
+screen -t Shell1  2 docker exec -it --user WORKSPACE_USER ci_workspace_1 bash
 screen -t Shell2  3 docker exec -it ci_mysql_1 mysql -uroot -proot
 
 select 0
