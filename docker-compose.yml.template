@@ -17,7 +17,7 @@ services:
       - workspace
 
   apps:
-    build: ./application
+    build: ./apps
     volumes:
       - ../:/var/www/edufocal
 
