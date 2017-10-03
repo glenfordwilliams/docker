@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM busybox:latest
 
 MAINTAINER Paul Allen <paul@edufocal.com>
 

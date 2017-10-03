@@ -82,7 +82,7 @@ write_hosts()
          SUDO='sudo'
      fi
 
-     declare -a urls=($SITE_URL "api.$SITE_URL")
+     declare -a urls=($SITE_URL "api.$SITE_URL" "www.$SITE_URL")
      for url in "${urls[@]}"
      do
          if ! grep -q "$url" /etc/hosts
