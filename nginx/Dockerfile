@@ -5,6 +5,7 @@ MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
 ADD nginx.conf /etc/nginx/
 ADD webapp.conf /etc/nginx/sites-available/
 ADD api.conf /etc/nginx/sites-available/
+ADD scribe.conf /etc/nginx/sites-available/
 
 RUN echo "upstream php-upstream { server php:9000; }" > /etc/nginx/conf.d/upstream.conf
 

@@ -18,4 +18,4 @@ cleani:
 	docker ps | awk '$2 ~ /ef_/ { print $1 }'
 
 connect:
-	docker exec -it ef_workspace_1 bash
+	docker exec -it --user=ef ef_workspace_1 bash

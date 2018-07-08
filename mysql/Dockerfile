@@ -1,6 +1,6 @@
-FROM mysql:latest
+FROM mysql:5.6
 
-MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
+MAINTAINER Paul Allen <paul@paulallen.org>
 
 ADD my.cnf /etc/mysql/conf.d/my.cnf
 
