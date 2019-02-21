@@ -27,13 +27,15 @@ if [ ! -d $INSTALL_DIR/docker/workspace/.ssh/ ]; then
     mkdir $INSTALL_DIR/docker/workspace/.ssh/
 fi
 
-cp  ~/.ssh/id_rsa.pub $INSTALL_DIR/docker/workspace/.ssh/id_rsa.pub
-cp  ~/.ssh/id_rsa $INSTALL_DIR/docker/workspace/.ssh/id_rsa
+if [ -f ~/.ssh/id_rsa.pub ]; then
+  cp  ~/.ssh/id_rsa.pub $INSTALL_DIR/docker/workspace/.ssh/id_rsa.pub
+  cp  ~/.ssh/id_rsa $INSTALL_DIR/docker/workspace/.ssh/id_rsa
+fi
 
 ESCAPED=$(echo $DATA_FOLDER | sed 's_/_\\/_g')
 
-sed "s/WORKSPACE_USER/$WORKSPACE_USER/" workspace/screenrc.template > workspace/screenrc  && \
-sed "s/WORKSPACE_USER/$WORKSPACE_USER/;s/DATA_FOLDER/$ESCAPED/" docker-compose.yml.template > docker-compose.yml  && \
+# sed "s/WORKSPACE_USER/$WORKSPACE_USER/" workspace/screenrc.template > workspace/screenrc  && \
+# sed "s/WORKSPACE_USER/$WORKSPACE_USER/;s/DATA_FOLDER/$ESCAPED/" docker-compose.yml.template > docker-compose.yml  && \
 
 make build && make up
 
