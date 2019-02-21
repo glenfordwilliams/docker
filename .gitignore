@@ -1,6 +1,5 @@
 logs
 ci
 *.bak
-docker-compose.yml
 nginx/webapp.conf
 nginx/api.conf

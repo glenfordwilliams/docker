@@ -23,18 +23,6 @@ trap "rm -f $LOCK_FILE" EXIT
 
 touch $LOCK_FILE
 
-if [ ! -d $INSTALL_DIR/webapp ]; then
-  git clone git@github.com:gordonswaby/edufocal.git $INSTALL_DIR/webapp
-fi
-
-if [ ! -d $INSTALL_DIR/docker ]; then
-  git clone git@github.com:edufocal/docker.git $INSTALL_DIR/docker
-fi
-
-if [ ! -d $INSTALL_DIR/api ]; then
-  git clone git@github.com:edufocal/api.git $INSTALL_DIR/api
-fi
-
 if [ ! -d $INSTALL_DIR/docker/workspace/.ssh/ ]; then
     mkdir $INSTALL_DIR/docker/workspace/.ssh/
 fi
@@ -42,12 +30,8 @@ fi
 cp  ~/.ssh/id_rsa.pub $INSTALL_DIR/docker/workspace/.ssh/id_rsa.pub
 cp  ~/.ssh/id_rsa $INSTALL_DIR/docker/workspace/.ssh/id_rsa
 
-cd $INSTALL_DIR/docker && \
-
 ESCAPED=$(echo $DATA_FOLDER | sed 's_/_\\/_g')
 
-sed "s/SITE_URL/$SITE_URL/" nginx/api.conf.template > nginx/api.conf && \
-sed "s/SITE_URL/$SITE_URL/" nginx/webapp.conf.template > nginx/webapp.conf && \
 sed "s/WORKSPACE_USER/$WORKSPACE_USER/" workspace/screenrc.template > workspace/screenrc  && \
 sed "s/WORKSPACE_USER/$WORKSPACE_USER/;s/DATA_FOLDER/$ESCAPED/" docker-compose.yml.template > docker-compose.yml  && \
 

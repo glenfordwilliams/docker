@@ -1,15 +1,21 @@
-# EduFocal's Docker Configuration
-
-Setup your development environment quickly using this stack.
-
-First our setup script below and follow the prompt for your github username and password:
+# Manual Steps for EduFocal Setup 
+Step 1:
 ```
-wget -O - https://raw.githubusercontent.com/EduFocal/misc/master/clonedocker.sh | bash
+git clone git@github.com:gordonswaby/edufocal.git $INSTALL_DIR/webapp
 ```
 
-This will install all the containers and build them.
+Step 2
+```
+git clone git@github.com:edufocal/api.git $INSTALL_DIR/api
+```
 
-There is also an optional screen / vim workspace you can start using right away with:
+Step 3
 ```
-make screen
+git clone git@github.com:edufocal/docker.git $INSTALL_DIR/docker
 ```
+
+Step 4:
+Edit the following files with the necessary configuration choices:
+1. Change DATA_FOLDER in docker-compose.yml to the correct folder location
+2. Change SITE_URL in docker/nginx/api.conf to the correct local url (suggest: edufocal.localhost)
+3. Change SITE_URL in docker/webapp.conf to correct local url (suggest: edufocal.localhost)
