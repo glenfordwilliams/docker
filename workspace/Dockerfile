@@ -114,6 +114,7 @@ USER root
 RUN apt-get install -y -qq ruby-dev
 RUN apt-get install make
 RUN gem install --no-rdoc --no-ri compass
+RUN gem install bootstrap-sass -v 3.3.6
 
 # Setup vim plugins and configs
 RUN git clone https://github.com/amix/vimrc.git /home/${USERNAME}/.vim_runtime
