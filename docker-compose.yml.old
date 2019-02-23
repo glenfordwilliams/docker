@@ -1,0 +1,71 @@
+version: '2'
+
+services:
+
+  php:
+    build:
+      context: ./php
+      dockerfile: Dockerfile-56
+    volumes_from:
+      - apps
+    expose:
+      - "9000"
+      - "80"
+    links:
+      - mysql
+      #- redis
+      - workspace
+
+  apps:
+    build: ./apps
+    volumes:
+      - ../:/var/www/edufocal
+
+  nginx:
+    build: ./nginx
+    volumes_from:
+      - apps
+    volumes:
+      - ./logs/:/var/log/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - php
+      - workspace
+    networks:
+      default:
+        aliases:
+          - apione
+
+  mysql:
+    build: ./mysql
+    volumes:
+      - DATA_FOLDER/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: edufocal_prod
+      MYSQL_USER: efuser 
+      MYSQL_PASSWORD: fAs4345FlewsA
+      MYSQL_ROOT_PASSWORD: root
+
+  #redis:
+  #  build: ./redis
+  #  ports:
+  #    - "6378:6379"
+
+  workspace:
+    build:
+      context: ./workspace
+      dockerfile: Dockerfile
+      args:
+        - USERNAME=ef
+    volumes_from:
+      - apps
+    expose:
+      - "8000"
+    tty: true
+    links:
+      - mysql
+      - redis
