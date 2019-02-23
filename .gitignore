@@ -4,3 +4,6 @@ ci
 docker-compose.yml
 nginx/webapp.conf
 nginx/api.conf
+data
+api
+webapp

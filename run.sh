@@ -32,5 +32,10 @@ function load_db(){
 	docker-compose exec  php bash -c "./helper.sh  load_db"
 }
 
+function clone_repos(){
+	git clone git@github.com:edufocal/api.git api
+	git clone git@github.com:gordonswaby/edufocal.git webapp
+}
+
 
 $@
