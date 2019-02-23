@@ -1,0 +1,30 @@
+0.0.0.0:80/api {
+    browse
+
+    root /srv/api/public
+        
+    rewrite {
+        r .*
+        ext /
+        to /index.php?{query}
+    }
+
+    fastcgi / 127.0.0.1:9000 php # php variant only
+    on startup php-fpm7 # php variant only
+}
+
+
+0.0.0.0:80/webapp {
+    browse
+
+    root /srv/webapp/public
+        
+    rewrite {
+        r .*
+        ext /
+        to /index.php?{query}
+    }
+
+    fastcgi / 127.0.0.1:9000 php # php variant only
+    on startup php-fpm7 # php variant only
+}
